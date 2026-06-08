@@ -194,11 +194,13 @@ function MusicPlayer() {
     setProgress(Number(value));
   };
 
+  const base = import.meta.env.BASE_URL || "/";
+
   return (
     <aside className="music-dock" aria-label="音乐播放器">
       <audio
         ref={audioRef}
-        src={activeTrack?.src}
+        src={activeTrack?.src ? `${base}${activeTrack.src}` : undefined}
         onTimeUpdate={onTimeUpdate}
         onEnded={() => changeTrack(1)}
       />
