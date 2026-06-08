@@ -146,7 +146,8 @@ function MusicPlayer() {
   const activeTrack = tracks[index];
 
   useEffect(() => {
-    fetch("/music/playlist.json", { cache: "no-store" })
+    const base = import.meta.env.BASE_URL || "/";
+    fetch(`${base}music/playlist.json`, { cache: "no-store" })
       .then((response) => (response.ok ? response.json() : []))
       .then((items) => setTracks(Array.isArray(items) ? items : []))
       .catch(() => setTracks([]));
@@ -387,7 +388,7 @@ export default function App() {
                     <MikuSignalField />
                     <span>THREE.JS LIVE ORBIT</span>
                   </div>
-                  <img className="miku-portrait" src="/images/ch_img_miku.png" alt="初音未来" />
+                  <img className="miku-portrait" src={`${import.meta.env.BASE_URL}images/ch_img_miku.png`} alt="初音未来" />
                   <FacePoem
                     page="Page 01"
                     eyebrow="Chronos / 声音开机"
@@ -409,7 +410,7 @@ export default function App() {
                   </div>
                   <div className="thread thread-a" aria-hidden="true" />
                   <div className="thread thread-b" aria-hidden="true" />
-                  <img className="miku-shadow" src="/images/ch_img_miku.png" alt="" aria-hidden="true" />
+                  <img className="miku-shadow" src={`${import.meta.env.BASE_URL}images/ch_img_miku.png`} alt="" aria-hidden="true" />
                   <FacePoem
                     page="Page 02"
                     eyebrow="Moira / 谱面断裂"
